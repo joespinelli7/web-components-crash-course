@@ -11,6 +11,10 @@ template.innerHTML = `
     margin-bottom: 15px;
     border-bottom: darkorchid 5px solid;
    }
+   
+   .user-card > div {
+    margin-bottom: 15px;
+   }
 
   .user-card img {
     width:: 100%;
@@ -30,8 +34,9 @@ template.innerHTML = `
     <div>
       <h3></h3>
       <div class="info">
-        <p>Email:</p>
-        <p>Phone:</p>
+<!--        Use slots here to reference the email and phone value's that are being passed from index.html-->
+        <p><slot name="email"/></p>
+        <p><slot name="phone"/></p>
       </div>
       <button id="toggle-info">Hide Info</button>
     </div>

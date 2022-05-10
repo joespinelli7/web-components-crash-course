@@ -13,8 +13,15 @@
 <body>
   <h3>Hello World</h3>
 
-  <user-card name="Terry Claus" avatar="https://randomuser.me/api/portraits/men/5.jpg"></user-card>
-  <user-card name="Bob Steezy" avatar="https://randomuser.me/api/portraits/men/10.jpg"></user-card>
+  <user-card name="Terry Claus" avatar="https://randomuser.me/api/portraits/men/5.jpg">
+<!--    Pass in different values for each user card custom element using slot attribute-->
+    <div slot="email">terryc@gmail.com</div>
+    <div slot="phone">512-843-4432</div>
+  </user-card>
+  <user-card name="Bob Steezy" avatar="https://randomuser.me/api/portraits/men/10.jpg">
+    <div slot="email">steezicus@hotmail.com</div>
+    <div slot="phone">512-565-9800</div>
+  </user-card>
 
   <script src="userCard.js"></script>
 </body>
