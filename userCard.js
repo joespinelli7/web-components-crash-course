@@ -30,7 +30,7 @@ template.innerHTML = `
   }
   </style>
   <div class="user-card">
-    <img />
+    <img alt="portrait" src=""/>
     <div>
       <h3></h3>
       <div class="info">
@@ -49,6 +49,9 @@ class UserCard extends HTMLElement {
     // super() methods calls on the constructor of the HTMLElement class we're extending
     super();
 
+    // set a property
+    this.showInfo = true;
+
     // attaching shadow dom to this custom element
     this.attachShadow({ mode: 'open'});
     // cloneNode: returns a copy of the node, if deep is true also returns node's descendants
@@ -56,6 +59,31 @@ class UserCard extends HTMLElement {
     // use shadowRoot to select and manipulate stuff from our custom element
     this.shadowRoot.querySelector('h3').innerText = this.getAttribute('name');
     this.shadowRoot.querySelector('img').src = this.getAttribute('avatar');
+  }
+
+  toggleInfo() {
+    this.showInfo = !this.showInfo;
+
+    const info = this.shadowRoot.querySelector('.info');
+    const toggleBtn = this.shadowRoot.querySelector('#toggle-info');
+
+    if (this.showInfo) {
+      info.style.display = 'block';
+      toggleBtn.innerText = 'Hide Info';
+    } else {
+      info.style.display = 'none';
+      toggleBtn.innerText = 'Show Info';
+    }
+  }
+
+  // Called every time when the element is inserted into the DOM, here using it to ad an event listener
+  connectedCallback() {
+    this.shadowRoot.querySelector('#toggle-info').addEventListener('click', () => this.toggleInfo());
+  }
+
+  // Called every time the element is removed from the DOM, here using it to remove event listener
+  disconnectedCallback() {
+    this.shadowRoot.querySelector('#toggle-info').removeEventListener();
   }
 }
 
